@@ -18,6 +18,13 @@ def generate_search_name(last_name):
 def get_players(request, player_id):
     player = get_player(player_id)
     response = requests.get(f"http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'&active_sw='Y'&name_part='{ player.last_name }%25'").json()
-    list = response['search_player_all']['queryResults']['row']
-    return JsonResponse(list, safe=False)
+    amount = response['search_player_all']['queryResults']['totalSize']
+    array_for_one = []
+    if (amount == "1"):
+        list = response['search_player_all']['queryResults']['row']
+        array_for_one.append(list)
+        return JsonResponse(array_for_one, safe=False)
+    else:
+        list = response['search_player_all']['queryResults']['row']
+        return JsonResponse(list, safe=False)
 

@@ -30,8 +30,14 @@ const getMyPlayers = async () => {
   return await tryCatchFetch(url, getInit());
 };
 
+const getAPIList = async (playerId) => {
+  let url = `${BASE_URL}api/players/${playerId}/list/`;
+  return await tryCatchFetch(url, getInit());
+};
+
 const myExports = {
   getMyPlayers,
+  getAPIList,
 };
 
 export default myExports;
