@@ -10,4 +10,5 @@ router.register('players', PlayerViewSet, basename='player')
 urlpatterns = [
     path('', include(router.urls)),
     path('players/<int:player_id>/list/', views.get_players, name='get_players'),
+    path('list/<int:player_id>/', views.get_player_details, name='get_player_details'),
 ]

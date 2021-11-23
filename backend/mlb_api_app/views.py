@@ -12,9 +12,6 @@ class PlayerViewSet(ModelViewSet):
 def get_player(player_id):
     return Player.objects.get(id=player_id)
 
-def generate_search_name(last_name):
-    return f"http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'&active_sw='Y'&name_part='{ last_name }%25'"
-
 def get_players(request, player_id):
     player = get_player(player_id)
     response = requests.get(f"http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'&active_sw='Y'&name_part='{ player.last_name }%25'").json()
@@ -27,4 +24,9 @@ def get_players(request, player_id):
     else:
         list = response['search_player_all']['queryResults']['row']
         return JsonResponse(list, safe=False)
+    
+def get_player_details(request, player_id):
+    response = requests.get(f"http://lookup-service-prod.mlb.com/json/named.player_info.bam?sport_code='mlb'&player_id={ player_id }").json()
+    detail = response['player_info']['queryResults']['row']
+    return JsonResponse(detail, safe=False)
 
