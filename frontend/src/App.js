@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import APIPlayersPage from "./pages/APIPlayersPage";
 import APIPlayerDetailPage from "./pages/APIPlayerDetailPage";
+import TeamsPage from "./pages/TeamsPage";
+import TeamRosterPage from "./pages/TeamRosterPage";
 import "./App.css";
 
 class App extends Component {
@@ -22,6 +24,8 @@ class App extends Component {
               exact
               component={APIPlayerDetailPage}
             />
+            <Route path="/teams" exact component={TeamsPage} />
+            <Route path="/teams/:teamId" exact component={TeamRosterPage} />
           </div>
         </Router>
       </div>

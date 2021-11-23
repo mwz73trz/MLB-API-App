@@ -1,6 +1,7 @@
 import { Component } from "react";
 import mlbAPI from "../api/mlbAPI";
 import MyPlayers from "../components/MyPlayers";
+import { Link } from "react-router-dom";
 
 class HomePage extends Component {
   state = {
@@ -40,7 +41,13 @@ class HomePage extends Component {
   }
 
   render() {
-    return <div>{this.renderWelcome()}</div>;
+    return (
+      <div>
+        {this.renderWelcome()}
+        <hr />
+        <Link to="/teams">Go to Current MLB Teams</Link>
+      </div>
+    );
   }
 }
 

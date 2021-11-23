@@ -40,10 +40,22 @@ const getAPIPlayerDetail = async (playerId) => {
   return await tryCatchFetch(url, getInit());
 };
 
+const getTeams = async () => {
+  let url = `${BASE_URL}api/teams/`;
+  return await tryCatchFetch(url, getInit());
+};
+
+const getTeamRoster = async (teamId) => {
+  let url = `${BASE_URL}api/teams/${teamId}/`;
+  return await tryCatchFetch(url, getInit());
+};
+
 const myExports = {
   getMyPlayers,
   getAPIList,
   getAPIPlayerDetail,
+  getTeams,
+  getTeamRoster,
 };
 
 export default myExports;

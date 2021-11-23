@@ -30,3 +30,13 @@ def get_player_details(request, player_id):
     detail = response['player_info']['queryResults']['row']
     return JsonResponse(detail, safe=False)
 
+def get_teams(request):
+    response = requests.get(f"http://lookup-service-prod.mlb.com/json/named.team_all_season.bam?sport_code='mlb'&all_star_sw='N'&sort_order=name_asc&season='2021'").json()
+    teams = response['team_all_season']['queryResults']['row']
+    return JsonResponse(teams, safe=False)
+
+def get_team_roster(request, team_id):
+    response = requests.get(f"http://lookup-service-prod.mlb.com/json/named.roster_40.bam?team_id={ team_id }").json()
+    roster = response['roster_40']['queryResults']['row']
+    return JsonResponse(roster, safe=False)
+
